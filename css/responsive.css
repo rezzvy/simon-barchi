@@ -1,0 +1,90 @@
+@media screen and (max-width: 1160px) {
+  #game-container > #game-header .inner-wrap {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  #game-container > #game-main > .game-board {
+    flex: 0 0 100%;
+    height: 25%;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  #game-container > #game-header,
+  #game-container > #game-footer,
+  .panel {
+    padding: 5px !important;
+  }
+
+  #game-container > #game-header .inner-wrap {
+    max-width: unset;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+  }
+
+  #game-container > #game-header .inner-wrap .game-current-stage {
+    margin-bottom: 0px;
+  }
+
+  .panel {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .btn {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #game-container > #game-header,
+  #game-container > #game-footer,
+  .panel {
+    padding: 15px;
+  }
+
+  #game-container > #game-header .inner-wrap .game-current-stage {
+    font-size: 1.25rem;
+  }
+
+  #game-container > #game-header::before,
+  #game-container > #game-header::after,
+  .free-zone {
+    display: none;
+  }
+
+  .selected img {
+    object-position: center 4vw;
+  }
+
+  #start-btn {
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0;
+    border-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  #game-container > #game-header .inner-wrap .game-stage-progress::before {
+    background-color: rgb(23, 114, 200);
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  #game-container > #game-header .inner-wrap .game-stage-progress {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  .panel {
+    width: 90%;
+  }
+}

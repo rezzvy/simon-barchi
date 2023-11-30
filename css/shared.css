@@ -112,6 +112,10 @@ img {
   transition: filter var(--transition-pattern), transform var(--transition-pattern), opacity var(--transition-pattern);
 }
 
+.pointer.mobile {
+  display: none;
+}
+
 .pointer img {
   width: 100px;
   height: 100px;
@@ -156,6 +160,7 @@ img {
 
 .text {
   font-family: "Space Mono", monospace;
+  word-break: keep-all;
 }
 
 a {

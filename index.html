@@ -7,6 +7,7 @@
     <meta name="description" content="Web-based Simon game with the touch of Blue Archive." />
     <link rel="stylesheet" href="./css/shared.css" />
     <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
   </head>
   <body>
     <!-- Game Main Elements Start -->
@@ -37,7 +38,10 @@
         </div>
       </div>
       <div id="game-footer">
-        <div class="text"><a href="https://github.com/rezzvy/simon-barchi" target="_blank">SimonBarchi</a> - Made with lots of ❤️ by <a href="https://github.com/rezzvy" target="_blank">Muhammad Reza Fahlevi</a></div>
+        <div class="text">
+          <a href="https://github.com/rezzvy/simon-barchi" target="_blank">SimonBarchi</a> - Made with lots of<br />
+          ❤️ by <a href="https://github.com/rezzvy" target="_blank">Muhammad Reza Fahlevi</a>
+        </div>
       </div>
     </div>
     <!-- Game Main Elements End -->
@@ -64,8 +68,10 @@
     <!-- Game Modal Start -->
     <aside id="modal-failed" class="none">
       <div class="panel">
-        <div class="text">Game has ended!<br />You've reached Stage:</div>
-        <div class="score-stage-reached big-fs">1</div>
+        <div>
+          <div class="text">Game has ended!<br />You've reached Stage:</div>
+          <div class="score-stage-reached big-fs">1</div>
+        </div>
 
         <div class="score-moves" style="margin-bottom: 30px">
           <div class="text" style="margin: 12px 0">Expected Moves in this stage:</div>
@@ -75,8 +81,10 @@
           <div class="player-moves border-box"></div>
         </div>
 
-        <a href="javascript:void(0)" class="btn" id="replay">Play again?</a>
-        <a href="javascript:void(0)" class="btn spacing-top-8" id="modal-close">Close</a>
+        <div>
+          <a href="javascript:void(0)" class="btn" id="replay">Play again?</a>
+          <a href="javascript:void(0)" class="btn spacing-top-8" id="modal-close">Close</a>
+        </div>
       </div>
     </aside>
     <!-- Game Modal End -->

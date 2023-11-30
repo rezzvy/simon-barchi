@@ -44,3 +44,9 @@ window.addEventListener("mousemove", (e) => {
   pointerElement.style.top = e.clientY - 50 + "px";
   pointerElement.style.left = e.clientX - 50 + "px";
 });
+
+var isTouchDevice = "ontouchstart" in document.documentElement;
+
+if (isTouchDevice) {
+  document.querySelector(".pointer").classList.add("mobile");
+}
