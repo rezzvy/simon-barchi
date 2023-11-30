@@ -1,3 +1,4 @@
+const gameContainerElement = document.getElementById("game-container");
 const gameHeaderElement = document.getElementById("game-header");
 const gameFooterElement = document.getElementById("game-footer");
 const modalChildElement = document.getElementById("modal-failed").firstElementChild;
@@ -7,6 +8,12 @@ const pointerElement = document.querySelector(".pointer");
 function _pointer(bool) {
   bool ? pointerElement.classList.add("hide") : pointerElement.classList.remove("hide");
 }
+
+gameContainerElement.style.setProperty("--screen-height", window.innerHeight + "px");
+
+window.addEventListener("resize", () => {
+  gameContainerElement.style.setProperty("--screen-height", window.innerHeight + "px");
+});
 
 modalChildElement.addEventListener("mouseover", (e) => {
   _pointer(true);

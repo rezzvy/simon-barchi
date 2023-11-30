@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column nowrap;
 
-  height: 100dvh;
+  height: var(--screen-height, 100vh);
 }
 
 #game-container > #game-header {
