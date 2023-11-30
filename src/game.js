@@ -74,7 +74,17 @@ class GameView {
 
     this.gameStartBtnElement = document.querySelector("#start-btn");
 
+    this.waitingIndicatorElement = document.querySelector(".waiting");
+
     this.getAudio("bg").volume = 0.45;
+  }
+
+  setWait(bool) {
+    if (bool) {
+      this.waitingIndicatorElement.classList.remove("none");
+      return;
+    }
+    this.waitingIndicatorElement.classList.add("none");
   }
 
   updateStage(length) {
@@ -157,6 +167,13 @@ class GameController {
     });
 
     this.view.gameBoardElements.forEach((board) => {
+      if (isTouchDevice) {
+        board.addEventListener("touchstart", (e) => {
+          this.gameBoardClickHandler(e);
+        });
+        return;
+      }
+
       board.addEventListener("click", (e) => {
         this.gameBoardClickHandler(e);
       });
@@ -198,18 +215,21 @@ class GameController {
     if (flag === "Start") {
       this.createGame();
 
+      this.view.setWait(true);
       this.view.playAudio("bg");
       e.textContent = "Stop";
       return;
     }
 
     this.destroyGame();
+    this.view.setWait(false);
     e.textContent = "Start";
   }
 
   playAvailableMoves(i = 0) {
     if (i >= this.model.moves.length) {
       this.view.disableBoard(false);
+      this.view.setWait(false);
       return;
     }
 
@@ -257,6 +277,7 @@ class GameController {
         this.model.currentStage++;
         this.view.updateStage(this.model.currentStage);
         this.model.generateRandomMove();
+        this.view.setWait(true);
         this.playAvailableMoves();
         return;
       }

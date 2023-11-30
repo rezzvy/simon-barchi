@@ -47,7 +47,12 @@
   #game-container > #game-header,
   #game-container > #game-footer,
   .panel {
-    padding: 15px;
+    padding: 10px;
+  }
+
+  #game-container > #game-header,
+  #game-container > #game-footer {
+    background-size: 28px 28px;
   }
 
   #game-container > #game-header .inner-wrap .game-current-stage {
