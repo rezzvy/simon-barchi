@@ -1,0 +1,215 @@
+@font-face {
+  font-display: swap;
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/space-mono-v13-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/space-mono-v13-latin-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Rubik Mono One";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/rubik-mono-one-v18-latin-regular.woff2") format("woff2");
+}
+
+* {
+  font-family: inherit;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-x-pattern: radial-gradient(circle, transparent 25%, #ffffff 26%), linear-gradient(45deg, transparent 46%, #b9b9b9 47%, #b9b9b9 52%, transparent 53%), linear-gradient(135deg, transparent 46%, #b9b9b9 47%, #b9b9b9 52%, transparent 53%);
+  --bg-shape-pattern: repeating-linear-gradient(90deg, #efefef 0, #efefef 5%, transparent 0, transparent 50%), repeating-linear-gradient(180deg, #efefef 0, #efefef 5%, transparent 0, transparent 50%);
+  --transition-pattern: 0.5s cubic-bezier(0.22, 0.68, 0, 1.71);
+}
+
+body {
+  font-family: "Rubik Mono One", monospace;
+  overflow: hidden;
+  cursor: none;
+  color: rgb(23, 23, 23);
+}
+
+.free-zone {
+  width: 160px;
+  height: 160px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 5;
+  border-radius: 50%;
+  box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.game-board {
+  --board-color-opacity: 0.65;
+  --board-red-bg-color: rgba(255, 0, 0, var(--board-color-opacity));
+  --board-blue-bg-color: rgba(0, 89, 255, var(--board-color-opacity));
+  --board-green-bg-color: rgba(0, 128, 0, var(--board-color-opacity));
+  --board-yellow-bg-color: rgba(255, 255, 0, var(--board-color-opacity));
+}
+
+.game-board {
+  transition: background-color var(--transition-pattern);
+
+  position: relative;
+}
+
+.highlight::after {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 80%;
+  border: 8px dashed white;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 2;
+}
+
+.game-board img {
+  transition: object-position var(--transition-pattern), transform var(--transition-pattern);
+}
+
+.game-board:hover,
+.selected {
+  --board-color-opacity: 0.35;
+}
+
+.selected img {
+  object-position: center 4.3vw;
+  transform: scale(2);
+}
+
+img {
+  user-select: none;
+}
+
+.pointer {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+
+  transition: filter var(--transition-pattern), transform var(--transition-pattern), opacity var(--transition-pattern);
+}
+
+.pointer img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.gray-filter {
+  filter: grayscale(1);
+  transform: scale(1.6);
+}
+
+#start-btn {
+  display: inline-block;
+  padding: 6px 16px;
+  color: white;
+  background-color: rgb(23, 114, 200);
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+.btn {
+  padding: 8px 0;
+  border-radius: 6px;
+  display: block;
+  color: black;
+  border: 1px solid black;
+}
+
+.btn:hover {
+  background-color: black;
+  color: white;
+}
+
+#start-btn:hover {
+  background-color: rgb(19, 90, 157);
+}
+
+.hide {
+  opacity: 0;
+}
+
+.text {
+  font-family: "Space Mono", monospace;
+}
+
+a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#modal-failed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(218, 218, 218, 0.9);
+  z-index: 5;
+}
+
+.big-fs {
+  font-size: 4rem;
+}
+
+.spacing-top-8 {
+  margin-top: 8px;
+}
+
+div {
+  font-size: 16px;
+}
+
+.none {
+  display: none;
+}
+
+.no-events {
+  pointer-events: none;
+}
+
+.panel {
+  width: 400px;
+  height: max-content;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  text-align: center;
+  padding: 1%;
+  border-radius: 6px;
+  cursor: initial;
+}
+
+.border-box {
+  white-space: pre;
+  overflow-x: auto;
+  padding: 12px;
+  text-align: start;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}

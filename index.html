@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimonBarchi - Web-based Simon game with the touch of Blue Archive</title>
+    <meta name="description" content="Web-based Simon game with the touch of Blue Archive." />
+    <link rel="stylesheet" href="./css/shared.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <!-- Game Main Elements Start -->
+    <div id="game-container">
+      <div id="game-header">
+        <div class="inner-wrap">
+          <div class="game-current-stage">Stage:<span class="_stage-count">1</span></div>
+          <div class="game-stage-progress"></div>
+
+          <a href="javascript:void(0)" id="start-btn">Start</a>
+        </div>
+      </div>
+      <div id="game-main">
+        <div class="free-zone">
+          <span>Free Zone</span>
+        </div>
+        <div class="game-board" data-color="🟢">
+          <img src="./assets/img/characters/green.webp" draggable="false" />
+        </div>
+        <div class="game-board" data-color="🔴">
+          <img src="./assets/img/characters/red.webp" draggable="false" />
+        </div>
+        <div class="game-board" data-color="🟡">
+          <img src="./assets/img/characters/yellow.webp" draggable="false" />
+        </div>
+        <div class="game-board" data-color="🔵">
+          <img src="./assets/img/characters/blue.webp" draggable="false" />
+        </div>
+      </div>
+      <div id="game-footer">
+        <div class="text"><a href="https://github.com/rezzvy/simon-barchi" target="_blank">SimonBarchi</a> - Made with lots of ❤️ by <a href="https://github.com/rezzvy" target="_blank">Muhammad Reza Fahlevi</a></div>
+      </div>
+    </div>
+    <!-- Game Main Elements End -->
+
+    <!-- Game Audio Assets Start -->
+    <aside>
+      <audio src="./assets/audio/characters/blue.mp3" data-audio="🔵"></audio>
+      <audio src="./assets/audio/characters/red.mp3" data-audio="🔴"></audio>
+      <audio src="./assets/audio/characters/yellow.mp3" data-audio="🟡"></audio>
+      <audio src="./assets/audio/characters/green.mp3" data-audio="🟢"></audio>
+
+      <audio src="./assets/audio/correct.mp3" data-audio="correct"></audio>
+      <audio src="./assets/audio/wrong.mp3" data-audio="wrong"></audio>
+      <audio src="./assets/audio/bg.ogg" data-audio="bg" loop></audio>
+    </aside>
+    <!-- Game Audio Assets End -->
+
+    <!-- Game Custom Pointer Start-->
+    <div class="pointer">
+      <img src="https://media.tenor.com/3yNprXLRf6AAAAAi/arona-blue-archive.gif" />
+    </div>
+    <!-- Game Custom Pointer End-->
+
+    <!-- Game Modal Start -->
+    <aside id="modal-failed" class="none">
+      <div class="panel">
+        <div class="text">Game has ended!<br />You've reached Stage:</div>
+        <div class="score-stage-reached big-fs">1</div>
+
+        <div class="score-moves" style="margin-bottom: 30px">
+          <div class="text" style="margin: 12px 0">Expected Moves in this stage:</div>
+          <div class="generated-moves border-box"></div>
+
+          <div class="text" style="margin: 12px 0">Moves you've made:</div>
+          <div class="player-moves border-box"></div>
+        </div>
+
+        <a href="javascript:void(0)" class="btn" id="replay">Play again?</a>
+        <a href="javascript:void(0)" class="btn spacing-top-8" id="modal-close">Close</a>
+      </div>
+    </aside>
+    <!-- Game Modal End -->
+  </body>
+</html>

@@ -1,0 +1,131 @@
+#game-container {
+  display: flex;
+  flex-flow: column nowrap;
+
+  height: 100vh;
+}
+
+#game-container > #game-header {
+  padding: 0.5% 0;
+  color: rgb(23, 23, 23);
+  cursor: initial;
+  background: var(--bg-shape-pattern);
+  background-size: 3em 3em;
+  background-color: #ffffff;
+  position: relative;
+}
+
+#game-container > #game-header::before,
+#game-container > #game-header::after {
+  content: "";
+  width: 50%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+#game-container > #game-header::before {
+  background-image: url("../assets/img/chibi_1.webp");
+  left: 0;
+}
+
+#game-container > #game-header::after {
+  background-image: url("../assets/img/chibi_2.webp");
+  background-position: right;
+  right: 0;
+}
+
+#game-container > #game-header .inner-wrap {
+  max-width: 800px;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+#game-container > #game-header .inner-wrap .game-current-stage {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+#game-container > #game-header .inner-wrap .game-current-stage ._stage-count {
+  margin-left: 6px;
+}
+
+#game-container > #game-header .inner-wrap .game-stage-progress {
+  width: 100%;
+  height: 16px;
+  background-color: rgb(181, 181, 181);
+  position: relative;
+  --game-stage-progress-length: 0%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  overflow: hidden;
+}
+
+#game-container > #game-header .inner-wrap .game-stage-progress::before {
+  content: "";
+  position: absolute;
+  width: var(--game-stage-progress-length);
+  height: 100%;
+  inset: 0;
+  margin: auto;
+  background-color: rgb(0, 0, 0);
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  transition: width var(--transition-pattern);
+}
+
+#game-container > #game-main {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background-image: var(--bg-x-pattern);
+  background-size: 3em 3em;
+  background-position: top center;
+}
+
+#game-container > #game-main > .game-board {
+  flex: 0 0 50%;
+  height: 50%;
+  overflow: hidden;
+}
+
+#game-container > #game-main > .game-board[data-color="🟢"] {
+  background-color: var(--board-green-bg-color);
+}
+
+#game-container > #game-main > .game-board[data-color="🔴"] {
+  background-color: var(--board-red-bg-color);
+}
+
+#game-container > #game-main > .game-board[data-color="🟡"] {
+  background-color: var(--board-yellow-bg-color);
+}
+
+#game-container > #game-main > .game-board[data-color="🔵"] {
+  background-color: var(--board-blue-bg-color);
+}
+
+#game-container > #game-main > .game-board img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 3;
+}
+
+#game-container > #game-footer {
+  cursor: initial;
+  font-size: 16px;
+  text-align: center;
+  padding: 0.5% 0;
+  background: var(--bg-shape-pattern);
+  background-size: 3em 3em;
+  background-color: #ffffff;
+}
