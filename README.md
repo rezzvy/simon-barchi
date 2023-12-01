@@ -2,7 +2,7 @@
 
 Web-based Simon game with a touch of Blue Archive.
 
-![Logo](https://i.ibb.co/LrX4PB1/simon-barchi.jpg)
+![Preview](https://repository-images.githubusercontent.com/725541645/fc91cacd-cc6e-490f-b731-60077f633a0e)
 
 ## Installation Steps
 
