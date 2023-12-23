@@ -51,6 +51,17 @@ class GameModel {
   }
 
   generateRandomSequence() {
+    if (this.sequences.length < 4) {
+      for (let i = 0; i < 50; i++) {
+        const randomSequence = this.getRandomSequenceColor();
+        if (!this.sequences.includes(randomSequence)) {
+          this.sequences.push(randomSequence);
+          break;
+        }
+      }
+      return;
+    }
+
     this.sequences.push(this.getRandomSequenceColor());
   }
 }
