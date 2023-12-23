@@ -7,10 +7,16 @@ Web-based Simon game with a touch of Blue Archive.
 ## Installation Steps
 
 - Clone this repository.
-- Unzip the downloaded files.
+- Open the cloned repository.
+- Launch a local server
 - Run `index.html` file.
 
 Alternatively, you can play using our provided demo by clicking [this link](https://rezzvy.github.io/simon-barchi/).
+
+## TODO
+
+- [ ] Add Game Configuration (Volume and Sequence Play Speed)
+- [ ] Add **Hard** Difficulty
 
 ## How to Play
 
