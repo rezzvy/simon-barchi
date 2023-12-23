@@ -226,24 +226,17 @@ div {
   width: 100%;
   height: 6px;
   position: absolute;
+  left: 0;
   bottom: 0;
   z-index: 2;
-}
-
-.loader {
-  display: block;
-  width: 50%;
-  height: 100%;
-  background-color: rgb(0, 0, 0);
-
   animation: loading-animation infinite 0.6s ease-in-out alternate;
 }
 
 @keyframes loading-animation {
   from {
-    transform: translateX(0);
+    background-color: rgb(0, 0, 0);
   }
   to {
-    transform: translateX(100%);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 }

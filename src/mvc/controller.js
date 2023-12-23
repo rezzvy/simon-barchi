@@ -25,7 +25,7 @@ class GameController {
 
     this.view.boardElements.forEach((board) => {
       if (isTouchDevice) {
-        board.addEventListener("touchstart", (e) => {
+        return board.addEventListener("touchstart", (e) => {
           this.boardClickHandler(e);
         });
       }
@@ -126,6 +126,7 @@ class GameController {
 
   __boardClickWrong() {
     this.view.gameReset();
+    this.model.isGameOver = true;
 
     this.view.playAudioElement("wrong");
     this.view.showElement(this.view.modalFailedElement, true);
