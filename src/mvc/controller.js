@@ -62,6 +62,7 @@ class GameController {
 
         if (flag === "speed-costum") {
           this.model.sequencePlayType = "costum_length";
+          this.model.sequenceSpeed = parseInt(this.view.sequenceSpeedInputRangeElement.value);
           this.view.sequenceSpeedInputRangeElement.disabled = false;
           return;
         }
