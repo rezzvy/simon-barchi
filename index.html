@@ -22,7 +22,10 @@
           <div class="game-current-stage">Stage:<span class="_stage-count">1</span></div>
           <div class="game-stage-progress"></div>
 
-          <a href="javascript:void(0)" id="start-btn">Start</a>
+          <div class="nav">
+            <a href="javascript:void(0)" id="start-btn">Start</a>
+            <a href="javascript:void(0)" id="setting-btn">Option</a>
+          </div>
         </div>
       </div>
       <div id="game-main">
@@ -93,6 +96,74 @@
       </div>
     </aside>
     <!-- Game Modal End -->
+
+    <aside id="modal-setting" class="modal none">
+      <div class="panel">
+        <div class="wrapper">
+          <h2>Volume</h2>
+          <div class="wrap spacing-top-8">
+            <h3 class="text">BGM</h3>
+            <input type="range" min="0" max="1" step="0.1" data-audio="bg" />
+          </div>
+
+          <div class="box-2">
+            <div class="wrap">
+              <h3 class="text">Green</h3>
+              <input type="range" min="0" max="1" step="0.1" data-audio="🟢" />
+            </div>
+
+            <div class="wrap">
+              <h3 class="text">Red</h3>
+              <input type="range" min="0" max="1" step="0.1" data-audio="🔴" />
+            </div>
+
+            <div class="wrap">
+              <h3 class="text">Yellow</h3>
+              <input type="range" min="0" max="1" step="0.1" data-audio="🟡" />
+            </div>
+
+            <div class="wrap">
+              <h3 class="text">Blue</h3>
+              <input type="range" min="0" max="1" step="0.1" data-audio="🔵" />
+            </div>
+
+            <div class="wrap">
+              <h3 class="text">Correct</h3>
+              <input type="range" min="0" max="1" step="0.1" data-audio="correct" />
+            </div>
+
+            <div class="wrap">
+              <h3 class="text">Wrong</h3>
+              <input type="range" min="0" max="1" step="0.1" data-audio="wrong" />
+            </div>
+          </div>
+        </div>
+
+        <div class="wrapper spacing-top-15">
+          <h2>Sequence</h2>
+
+          <h3 class="text spacing-top-8">Speed</h3>
+          <div class="wrap">
+            <input type="radio" id="audio-length-sequence-speed" name="sequence-speed" data-setting="speed-based" checked />
+            <label class="text" for="audio-length-sequence-speed">Based on voice audio length</label>
+          </div>
+
+          <div class="wrap">
+            <input type="radio" id="costum-sequence-speed" name="sequence-speed" data-setting="speed-costum" />
+            <label class="text" for="costum-sequence-speed">Costum speed (without audio)</label>
+          </div>
+
+          <div class="wrap spacing-top-8">
+            <h3 class="text">Costum (fast to slow)</h3>
+            <input type="range" min="50" max="1000" step="50" data-setting="speed-input-range" disabled />
+          </div>
+        </div>
+
+        <div class="spacing-top-15">
+          <a href="javascript:void(0)" class="btn save-setting-btn close-modal">Save & Close</a>
+        </div>
+      </div>
+    </aside>
 
     <script src="./src/init.js"></script>
     <script src="./src/game.js" type="module"></script>

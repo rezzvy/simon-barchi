@@ -15,8 +15,9 @@ Alternatively, you can play using our provided demo by clicking [this link](http
 
 ## TODO
 
-- [ ] Add Game Configuration (Volume and Sequence Play Speed)
-- [ ] Add **Hard** Difficulty
+- [X]  Add Game Configuration (Volume and Sequence Play Speed) ~ **Dec 24, 2023**
+- [ ]  Add **Hard** Difficulty ~ **Work in Progress**
+
 
 ## How to Play
 

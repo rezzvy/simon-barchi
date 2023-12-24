@@ -69,7 +69,18 @@
     object-position: center 4vw;
   }
 
-  #start-btn {
+  .nav {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .nav > * {
+    flex: 1;
+  }
+
+  #start-btn,
+  #setting-btn {
     display: block;
     font-size: 0.8rem;
     margin-top: 0;

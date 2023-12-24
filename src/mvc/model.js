@@ -12,6 +12,28 @@ class GameModel {
       expected: "",
       selected: "",
     };
+
+    this.sequencePlayType = "";
+    this.sequenceSpeed = 0;
+  }
+
+  storeUserSettings(obj) {
+    localStorage.setItem(
+      "simon-barchi-settings",
+      JSON.stringify({
+        bg: obj.bg,
+        "🟢": obj["🟢"],
+        "🔴": obj["🔴"],
+        "🟡": obj["🟡"],
+        "🔵": obj["🔵"],
+        correct: obj["correct"],
+        wrong: obj["wrong"],
+        sequenceSpeed: {
+          type: obj.sequenceSpeed.type,
+          value: obj.sequenceSpeed.value,
+        },
+      })
+    );
   }
 
   gameReset() {
@@ -63,6 +85,10 @@ class GameModel {
     }
 
     this.sequences.push(this.getRandomSequenceColor());
+  }
+
+  getUserSettings() {
+    return JSON.parse(localStorage.getItem("simon-barchi-settings"));
   }
 }
 

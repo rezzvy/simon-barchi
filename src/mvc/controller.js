@@ -7,7 +7,16 @@ class GameController {
   }
 
   init() {
+    this.syncUserSettings();
     this.view.disableBoard(true);
+
+    this.view.settingButton.addEventListener("click", (e) => {
+      this.view.modalSettingElement.classList.remove("none");
+    });
+
+    this.view.saveGameSettingBtn.addEventListener("click", (e) => {
+      this.saveGameSettingHandler();
+    });
 
     this.view.startGameButton.addEventListener("click", (e) => {
       this.startGameClickHandler(e);
@@ -34,16 +43,65 @@ class GameController {
         this.boardClickHandler(e);
       });
     });
+
+    this.view.volumeSetElements.forEach((element) => {
+      element.addEventListener("input", (e) => {
+        this.setVolumeChangeHandler(e);
+      });
+    });
+
+    this.view.sequenceSpeedInputRangeElement.addEventListener("input", (e) => {
+      this.model.sequenceSpeed = parseInt(e.currentTarget.value);
+
+      document.documentElement.style.setProperty("--transition-pattern", `${e.currentTarget.value}ms cubic-bezier(0.22, 0.68, 0, 1.71)`);
+    });
+
+    this.view.sequenceSpeeSetElements.forEach((element) => {
+      element.addEventListener("click", (e) => {
+        const flag = e.currentTarget.dataset.setting;
+
+        if (flag === "speed-costum") {
+          this.model.sequencePlayType = "costum_length";
+          this.view.sequenceSpeedInputRangeElement.disabled = false;
+          return;
+        }
+
+        this.model.sequencePlayType = "audio_length";
+        this.view.sequenceSpeedInputRangeElement.disabled = true;
+        document.documentElement.style.setProperty("--transition-pattern", "");
+      });
+    });
+  }
+
+  syncUserSettings() {
+    const settings = this.model.getUserSettings();
+
+    if (settings) {
+      this.view.syncUserSettings(true, settings);
+      this.model.sequencePlayType = settings.sequenceSpeed.type;
+
+      if (this.model.sequencePlayType !== "audio_length") {
+        this.model.sequenceSpeed = settings.sequenceSpeed.value;
+        document.documentElement.style.setProperty("--transition-pattern", `${settings.sequenceSpeed.value}ms cubic-bezier(0.22, 0.68, 0, 1.71)`);
+      }
+
+      return;
+    }
+
+    this.saveGameSettingHandler();
+    this.model.sequencePlayType = "audio_length";
   }
 
   playSequences(i = 0) {
     if (i >= this.model.sequences.length) {
       this.view.showElement(this.view.waitSequenceIndicatorElement, false);
       this.view.disableBoard(false);
+      this.model.isSequenceCompleted = true;
       return;
     }
 
     if (i === 0) {
+      this.model.isSequenceCompleted = false;
       this.view.disableBoard(true);
       this.view.showElement(this.view.waitSequenceIndicatorElement, true);
     }
@@ -51,19 +109,24 @@ class GameController {
     const currentBoard = document.querySelector(`[data-color="${this.model.sequences[i]}"]`);
     const currentBoardAudio = this.view.getAudioElement(this.model.sequences[i]);
 
+    const speed = this.model.sequencePlayType === "audio_length" ? currentBoardAudio.duration * 1000 : this.model.sequenceSpeed;
+
     this.current.sequenceTimeOutStart = setTimeout(() => {
       this.__sequenceShow(currentBoard, currentBoardAudio);
 
       this.current.sequenceTimeOutEnd = setTimeout(() => {
         this.__sequenceRemove(currentBoard, currentBoardAudio);
         this.playSequences(i + 1);
-      }, currentBoardAudio.duration * 1000);
-    }, (currentBoardAudio.duration / 2) * 1000);
+      }, speed);
+    }, speed / 2);
   }
 
   __sequenceShow(currentBoard, currentBoardAudio) {
+    if (this.model.sequencePlayType === "audio_length") {
+      currentBoardAudio.play();
+    }
+
     this.view.showHighlightedBoard(currentBoard, true);
-    currentBoardAudio.play();
   }
 
   __sequenceRemove(currentBoard) {
@@ -146,6 +209,36 @@ class GameController {
 
     this.model.generateRandomSequence();
     this.playSequences();
+  }
+
+  setVolumeChangeHandler(e) {
+    const event = e.currentTarget;
+    this.view.setAudioElementVolume(event.dataset.audio, event.value);
+  }
+
+  saveGameSettingHandler() {
+    const obj = {};
+    this.view.volumeSetElements.forEach((element) => {
+      obj[element.dataset.audio] = parseFloat(element.value);
+    });
+
+    this.view.sequenceSpeeSetElements.forEach((element) => {
+      if (element.dataset.setting === "speed-based" && element.checked) {
+        obj.sequenceSpeed = {
+          type: "audio_length",
+          value: "",
+        };
+      }
+
+      if (element.dataset.setting === "speed-costum" && element.checked) {
+        obj.sequenceSpeed = {
+          type: "costum_length",
+          value: this.model.sequenceSpeed,
+        };
+      }
+    });
+
+    this.model.storeUserSettings(obj);
   }
 }
 

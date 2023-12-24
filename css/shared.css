@@ -130,14 +130,19 @@ img {
   transform: scale(1.6);
 }
 
-#start-btn {
+#start-btn,
+#setting-btn {
   display: inline-block;
   padding: 6px 16px;
-  color: white;
-  background-color: rgb(23, 114, 200);
+
   text-decoration: none;
   border-radius: 6px;
   margin-top: 12px;
+}
+
+#start-btn {
+  color: white;
+  background-color: rgb(23, 114, 200);
 }
 
 .btn {
@@ -171,13 +176,14 @@ a {
   text-decoration: none;
 }
 
-#modal-failed {
+#modal-failed,
+.modal {
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(218, 218, 218, 0.9);
-  z-index: 5;
+  z-index: 10;
 }
 
 .big-fs {
@@ -186,6 +192,10 @@ a {
 
 .spacing-top-8 {
   margin-top: 8px;
+}
+
+.spacing-top-15 {
+  margin-top: 15px;
 }
 
 div {
@@ -239,4 +249,24 @@ div {
   to {
     background-color: rgba(0, 0, 0, 0.1);
   }
+}
+
+.box-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+input[type="range"] {
+  display: block;
+  width: 100%;
+}
+
+input[type="range"]:hover,
+label {
+  cursor: pointer;
+}
+
+[disabled] {
+  cursor: default !important;
 }
