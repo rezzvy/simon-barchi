@@ -1,0 +1,210 @@
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.h-screen {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.h-inherit {
+  height: inherit;
+}
+
+.letter-spacing {
+  letter-spacing: 8px;
+  padding-left: 8px;
+}
+
+.costum-header-width {
+  max-width: 1000px;
+  margin: auto;
+}
+
+header > ._wrapper,
+footer > ._wrapper {
+  background: linear-gradient(45deg, transparent 49%, #6d6d6d 49% 51%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, #6d6d6d 49% 51%, transparent 51%);
+  background-size: 3em 3em;
+}
+
+main {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+main > ._wrapper {
+  background: radial-gradient(circle, transparent 25%, #ffffff 26%),
+    linear-gradient(45deg, transparent 46%, #d0d0d0 47%, #d0d0d0 52%, transparent 53%),
+    linear-gradient(135deg, transparent 46%, #d0d0d0 47%, #d0d0d0 52%, transparent 53%);
+  background-size: 3em 3em;
+  background-position: center;
+}
+
+#sequence-wrapper {
+  --bg-opacity: 0.65;
+  --text-opacity: 0.65;
+}
+
+#sequence-wrapper .sequence-col {
+  height: 50%;
+  overflow: hidden;
+}
+
+#sequence-wrapper .sequence-col::after {
+  content: attr(data-color);
+  width: max-content;
+  height: max-content;
+  position: absolute;
+  font-size: 15vw;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: capitalize;
+  color: var(--text-color);
+  opacity: 0;
+  transition: opacity 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#sequence-wrapper .sequence-col > div {
+  z-index: 1;
+  transition: transform 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#sequence-wrapper .sequence-inner-wrap,
+#sequence-wrapper .sequence-inner-wrap img {
+  width: 100%;
+  height: 100%;
+}
+
+#sequence-wrapper .sequence-inner-wrap img {
+  object-fit: contain;
+}
+
+#sequence-wrapper .sequence-col[data-color="yellow"] {
+  --text-color: rgba(100, 100, 0, var(--text-opacity));
+  background-color: rgba(255, 255, 0, var(--bg-opacity));
+}
+
+#sequence-wrapper .sequence-col[data-color="blue"] {
+  --text-color: rgba(0, 0, 100, var(--text-opacity));
+  background-color: rgba(0, 0, 255, var(--bg-opacity));
+}
+
+#sequence-wrapper .sequence-col[data-color="red"] {
+  --text-color: rgba(100, 0, 0, var(--text-opacity));
+  background-color: rgba(255, 0, 0, var(--bg-opacity));
+}
+
+#sequence-wrapper .sequence-col[data-color="green"] {
+  --text-color: rgba(0, 100, 0, var(--text-opacity));
+  background-color: rgba(0, 128, 0, var(--bg-opacity));
+}
+
+@media (hover: hover) {
+  #sequence-wrapper .sequence-col:hover {
+    --bg-opacity: 0.45;
+  }
+}
+
+#stage-completion-bar {
+  height: 12px;
+}
+
+#freezone {
+  width: 150px;
+  height: 150px;
+  background: url(../assets/img/logo.png) no-repeat center/contain;
+  box-shadow: inset 0 0 6px 4px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+
+#main-menu-btn {
+  bottom: 10px;
+  right: 10px;
+  z-index: 5;
+}
+
+#sequence-play-indicator {
+  display: none;
+  z-index: 5;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#freezone,
+#sequence-wrapper .sequence-col::after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#stage-reached {
+  background: linear-gradient(45deg, transparent 49%, #6d6d6d 49% 51%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, #6d6d6d 49% 51%, transparent 51%);
+  background-size: 3em 3em;
+}
+
+.moves-box span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+main.sequence-playing #sequence-play-indicator {
+  display: block;
+}
+
+main.sequence-playing #sequence-wrapper {
+  cursor: wait;
+}
+
+main.sequence-playing #sequence-wrapper .sequence-col {
+  pointer-events: none;
+  transition: background-color 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#sequence-wrapper .sequence-col.active::after {
+  opacity: 1;
+}
+
+#sequence-wrapper .sequence-col.active > div {
+  transform: scale(3) translateY(25%);
+}
+
+#sequence-wrapper .sequence-col.active {
+  --bg-opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  #freezone {
+    width: 120px;
+    height: 120px;
+  }
+
+  #sequence-wrapper .sequence-col.active > div {
+    transform: scale(2) translateY(15%);
+  }
+}
+
+@media (max-width: 576px) {
+  #freezone {
+    width: 80px;
+    height: 80px;
+  }
+
+  #sequence-wrapper .sequence-col.active > div {
+    transform: scale(1.5);
+  }
+}

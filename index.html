@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simon Barchi - Simon Game with Blue Archive Theme</title>
+
+    <link rel="stylesheet" href="./lib/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div class="container-fluid d-flex flex-column p-0 h-screen">
+      <header>
+        <div class="_wrapper text-bg-dark text-center p-2">
+          <div class="costum-header-width">
+            <div class="mb-1 fw-bold fs-3 letter-spacing">STAGE 1</div>
+            <div id="stage-completion-bar" class="progress rounded-top-pill" role="progressbar">
+              <div class="progress-bar bg-secondary progress-bar-striped rounded-top-pill mx-auto" style="width: 25%"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="_wrapper bg-white position-relative h-100">
+          <div id="sequence-play-indicator" class="position-absolute p-2 text-bg-light bg-opacity-75 rounded-2 shadow-sm fw-bold fs-5 text-nowrap">
+            Watch the sequences
+          </div>
+          <div id="freezone" class="position-absolute bg-white rounded-circle"></div>
+          <div id="sequence-wrapper" class="row g-0 row-cols-2 h-inherit">
+            <div class="sequence-col position-relative p-2" role="button" data-color="yellow">
+              <div class="sequence-inner-wrap position-relative">
+                <img src="./assets/img/momoi.webp" alt="Momoi Image" />
+              </div>
+            </div>
+            <div class="sequence-col position-relative p-2" role="button" data-color="blue">
+              <div class="sequence-inner-wrap position-relative">
+                <img src="./assets/img/arisu.webp" alt="Arisu Image" />
+              </div>
+            </div>
+            <div class="sequence-col position-relative p-2" role="button" data-color="red">
+              <div class="sequence-inner-wrap position-relative">
+                <img src="./assets/img/iroha.webp" alt="Iroha Image" />
+              </div>
+            </div>
+            <div class="sequence-col position-relative p-2" role="button" data-color="green">
+              <div class="sequence-inner-wrap position-relative">
+                <img src="./assets/img/izuna.webp" alt="Izuna Image" />
+              </div>
+            </div>
+          </div>
+
+          <button id="main-menu-btn" class="btn btn-light position-absolute fw-bold" data-bs-toggle="modal" data-bs-target="#main-menu-modal">
+            Main Menu
+          </button>
+        </div>
+      </main>
+
+      <footer>
+        <div class="_wrapper text-bg-dark text-center p-2">
+          <p>Made with lots of love by <a href="https://github.com/rezzvy" class="link-light fw-bold">Muhammad Reza Fahlevi</a></p>
+        </div>
+      </footer>
+    </div>
+
+    <aside>
+      <div class="modal fade" id="main-menu-modal" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-4 fw-bold text-dark">Main Menu</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <h2 class="fs-5 mb-3">Configuration</h2>
+
+                <div>
+                  <label class="form-label">Voice Volume</label>
+                  <div class="badge text-bg-dark">0.3</div>
+                  <input type="range" class="form-range" value="0.3" min="0" max="1" step="0.1" />
+                </div>
+
+                <div class="my-2">
+                  <label class="form-label">BGM Volume</label>
+                  <div class="badge text-bg-dark">0.6</div>
+                  <input type="range" class="form-range" value="0.6" min="0" max="1" step="0.1" />
+                </div>
+
+                <div>
+                  <label class="form-label">Sequence Delay</label>
+                  <div class="badge text-bg-dark">400ms</div>
+                  <input type="range" class="form-range" value="400" min="100" max="1000" step="100" />
+                </div>
+              </div>
+
+              <div class="alert alert-dark mb-2">
+                After you click "Start Game" - watch the sequence and repeat it. Keep going until you make a mistake.
+              </div>
+              <button class="btn btn-dark fw-bold w-100">Start Game</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="result-modal" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-4 fw-bold text-dark">Result</h1>
+            </div>
+            <div class="modal-body">
+              <div id="stage-reached" class="p-4 mb-3 text-bg-dark text-center rounded-2">
+                <div class="fw-bold">Stage Reached:</div>
+                <div class="display-1 fw-bold">1</div>
+              </div>
+
+              <div>
+                <h2 class="fs-6 mb-2">Expected Moves</h2>
+                <div class="moves-box p-2 border d-flex gap-2 overflow-x-auto">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
+              <div class="mt-2 mb-3">
+                <h2 class="fs-6 mb-2">Your Moves</h2>
+                <div class="moves-box p-2 border d-flex gap-2 overflow-x-auto">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
+              <button class="btn btn-dark fw-bold w-100 mb-1">Play Again</button>
+              <button class="btn btn-outline-dark fw-bold w-100">Main Menu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <script src="./lib/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
