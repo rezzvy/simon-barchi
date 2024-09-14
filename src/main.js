@@ -20,6 +20,18 @@ const mainMenuCloseButton = document.getElementById("main-menu-close-btn");
 const currentStageElement = document.getElementById("current-stage");
 const stageCompletionBar = document.querySelector("#stage-completion-bar").firstElementChild;
 
+const voiceVolumeConfigContainer = document.getElementById("voice-vol-config");
+const voiceVolumeConfigInputIndicator = voiceVolumeConfigContainer.querySelector(".badge");
+const voiceVolumeConfigInput = voiceVolumeConfigContainer.querySelector("input");
+
+const bgmVolumeConfigContainer = document.getElementById("bgm-vol-config");
+const bgmVolumeConfigInputIndicator = bgmVolumeConfigContainer.querySelector(".badge");
+const bgmVolumeConfigInput = bgmVolumeConfigContainer.querySelector("input");
+
+const sequenceDelayConfigContainer = document.getElementById("sequence-delay-config");
+const sequenceDelayConfigInputIndicator = sequenceDelayConfigContainer.querySelector(".badge");
+const sequenceDelayConfigInput = sequenceDelayConfigContainer.querySelector("input");
+
 const voiceElements = {
   yellow: document.querySelector('audio[data-audio="yellow"]'),
   blue: document.querySelector('audio[data-audio="blue"]'),
@@ -44,6 +56,17 @@ let timeoutEnd = "";
 
 let currentPlayingVoice = "";
 let currentPlayingSequenceStatePlayback = "";
+
+let sequenceDelay = 600;
+
+setVoiceVolume(0.3);
+bgmElement.volume = 0.6;
+
+function setVoiceVolume(vol) {
+  Object.keys(voiceElements).forEach((key) => {
+    voiceElements[key].volume = vol;
+  });
+}
 
 function playAudio(audio, prev) {
   if (prev && !prev.paused) {
@@ -111,8 +134,8 @@ function playSequences(i = 0) {
     timeoutEnd = setTimeout(() => {
       sequenceElement.classList.remove("active");
       playSequences(i + 1);
-    }, 600);
-  }, 600);
+    }, sequenceDelay);
+  }, sequenceDelay);
 }
 
 function startGame() {
@@ -231,4 +254,25 @@ goToMainMenuButton.addEventListener("click", () => {
 retryButton.addEventListener("click", () => {
   resultModal.hide();
   startGame();
+});
+
+voiceVolumeConfigInput.addEventListener("input", (e) => {
+  const val = parseFloat(e.currentTarget.value);
+  voiceVolumeConfigInputIndicator.textContent = val;
+
+  setVoiceVolume(val);
+});
+
+bgmVolumeConfigInput.addEventListener("input", (e) => {
+  const val = parseFloat(e.currentTarget.value);
+  bgmVolumeConfigInputIndicator.textContent = val;
+  bgmElement.volume = val;
+});
+
+sequenceDelayConfigInput.addEventListener("input", (e) => {
+  const val = parseInt(e.currentTarget.value);
+  sequenceDelayConfigInputIndicator.textContent = val + "ms";
+
+  sequenceDelay = val;
+  document.documentElement.style.setProperty("--sequence-delay-transition", val + "ms");
 });
