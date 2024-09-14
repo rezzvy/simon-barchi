@@ -1,6 +1,7 @@
 :root {
   --sequence-delay-transition: 600ms;
   --sequence-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --height-screen: 100dvh;
 }
 
 h1,
@@ -14,8 +15,7 @@ a {
 }
 
 .h-screen {
-  height: 100vh;
-  height: 100dvh;
+  height: var(--height-screen);
 }
 
 .h-inherit {

@@ -293,3 +293,29 @@ fullScreenModeCheckbox.addEventListener("change", (e) => {
     document.exitFullscreen();
   }
 });
+
+function dvhUnitTest() {
+  const div = document.createElement("div");
+  div.style.position = "absolute";
+  div.style.top = "0";
+  div.style.opacity = "0";
+  div.style.height = "100dvh";
+
+  document.body.appendChild(div);
+  const isSupported = div.offsetHeight > 0;
+  document.body.removeChild(div);
+  return isSupported;
+}
+
+const isSupportDvh = dvhUnitTest();
+
+if (!isSupportDvh) {
+  console.log('this run and should be work!')
+  document.documentElement.style.setProperty("--height-screen", window.innerHeight + "px");
+
+  window.addEventListener("resize", () => {
+    document.documentElement.style.setProperty("--height-screen", window.innerHeight + "px");
+  });
+}
+
+console.log(isSupportDvh);
