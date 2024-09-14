@@ -13,9 +13,9 @@
       <header>
         <div class="_wrapper text-bg-dark text-center p-2">
           <div class="costum-header-width">
-            <div class="mb-1 fw-bold fs-3 letter-spacing">STAGE 1</div>
+            <div class="mb-1 fw-bold fs-3 letter-spacing">STAGE <span id="current-stage">1</span></div>
             <div id="stage-completion-bar" class="progress rounded-top-pill" role="progressbar">
-              <div class="progress-bar bg-secondary progress-bar-striped rounded-top-pill mx-auto" style="width: 25%"></div>
+              <div class="progress-bar bg-secondary progress-bar-striped rounded-top-pill mx-auto"></div>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-4 fw-bold text-dark">Main Menu</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button id="main-menu-close-btn" type="button" class="d-none btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="mb-3">
@@ -97,7 +97,7 @@
               <div class="alert alert-dark mb-2">
                 After you click "Start Game" - watch the sequence and repeat it. Keep going until you make a mistake.
               </div>
-              <button class="btn btn-dark fw-bold w-100">Start Game</button>
+              <button id="main-menu-start-game-btn" class="btn btn-dark fw-bold w-100">Start Game</button>
             </div>
           </div>
         </div>
@@ -117,22 +117,16 @@
 
               <div>
                 <h2 class="fs-6 mb-2">Expected Moves</h2>
-                <div class="moves-box p-2 border d-flex gap-2 overflow-x-auto">
-                  <span></span>
-                  <span></span>
-                </div>
+                <div id="expected-moves" class="moves-box p-2 border d-flex gap-2 overflow-x-auto"></div>
               </div>
 
               <div class="mt-2 mb-3">
                 <h2 class="fs-6 mb-2">Your Moves</h2>
-                <div class="moves-box p-2 border d-flex gap-2 overflow-x-auto">
-                  <span></span>
-                  <span></span>
-                </div>
+                <div id="player-moves" class="moves-box p-2 border d-flex gap-2 overflow-x-auto"></div>
               </div>
 
-              <button class="btn btn-dark fw-bold w-100 mb-1">Play Again</button>
-              <button class="btn btn-outline-dark fw-bold w-100">Main Menu</button>
+              <button id="retry-btn" class="btn btn-dark fw-bold w-100 mb-1">Play Again</button>
+              <button id="go-to-main-menu-btn" class="btn btn-outline-dark fw-bold w-100">Main Menu</button>
             </div>
           </div>
         </div>
@@ -140,5 +134,6 @@
     </aside>
 
     <script src="./lib/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="./src/main.js"></script>
   </body>
 </html>
