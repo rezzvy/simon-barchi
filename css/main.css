@@ -78,9 +78,6 @@ main > ._wrapper {
 #sequence-wrapper .sequence-col > div {
   z-index: 1;
   transition: transform var(--sequence-delay-transition) var(--sequence-timing-function);
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
 }
 
 #sequence-wrapper .sequence-inner-wrap,
@@ -91,6 +88,9 @@ main > ._wrapper {
 
 #sequence-wrapper .sequence-inner-wrap img {
   object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 #sequence-wrapper .sequence-col[data-color="yellow"] {
