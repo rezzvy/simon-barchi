@@ -75,16 +75,18 @@
               <div class="mb-3">
                 <h2 class="fs-5 mb-3">Configuration</h2>
 
-                <div id="voice-vol-config">
-                  <label class="form-label">Voice Volume</label>
-                  <div class="badge text-bg-dark">0.3</div>
-                  <input type="range" class="form-range" value="0.3" min="0" max="1" step="0.1" />
-                </div>
+                <div class="row row-cols-2 g-2">
+                  <div id="voice-vol-config">
+                    <label class="form-label">Voice Volume</label>
+                    <div class="badge text-bg-dark">0.3</div>
+                    <input type="range" class="form-range" value="0.3" min="0" max="1" step="0.1" />
+                  </div>
 
-                <div id="bgm-vol-config" class="my-2">
-                  <label class="form-label">BGM Volume</label>
-                  <div class="badge text-bg-dark">0.6</div>
-                  <input type="range" class="form-range" value="0.6" min="0" max="1" step="0.1" />
+                  <div id="bgm-vol-config">
+                    <label class="form-label">BGM Volume</label>
+                    <div class="badge text-bg-dark">0.6</div>
+                    <input type="range" class="form-range" value="0.6" min="0" max="1" step="0.1" />
+                  </div>
                 </div>
 
                 <div id="sequence-delay-config">
@@ -92,12 +94,28 @@
                   <div class="badge text-bg-dark">600ms</div>
                   <input type="range" class="form-range" value="600" min="100" max="1000" step="100" />
                 </div>
+
+                <div>
+                  <label class="form-label">Sequence Transition</label>
+                  <select id="sequence-transition-selection" class="form-select">
+                    <option value="unset">No Transition</option>
+                    <option value="linear">Linear</option>
+                    <option value="ease">Ease</option>
+                    <option value="ease-in">Ease In</option>
+                    <option value="ease-in-out">Ease In Out</option>
+                    <option value="cubic-bezier(0.68, -0.55, 0.27, 1.55)" selected>cubic-bezier(0.68, -0.55, 0.27, 1.55)</option>
+                  </select>
+                </div>
               </div>
 
               <div class="alert alert-dark mb-2">
                 After you click "Start Game" - watch the sequence and repeat it. Keep going until you make a mistake.
               </div>
-              <button id="main-menu-start-game-btn" class="btn btn-dark fw-bold w-100">Start Game</button>
+              <button id="main-menu-start-game-btn" class="btn btn-dark fw-bold w-100 mb-1">Start Game</button>
+              <div class="form-check form-switch">
+                <input id="full-screen-mode" class="form-check-input" type="checkbox" role="switch" />
+                <label class="form-check-label" for="flexSwitchCheckDefault">Full Screen Mode</label>
+              </div>
             </div>
           </div>
         </div>

@@ -32,6 +32,10 @@ const sequenceDelayConfigContainer = document.getElementById("sequence-delay-con
 const sequenceDelayConfigInputIndicator = sequenceDelayConfigContainer.querySelector(".badge");
 const sequenceDelayConfigInput = sequenceDelayConfigContainer.querySelector("input");
 
+const sequenceTransitionSelection = document.getElementById("sequence-transition-selection");
+
+const fullScreenModeCheckbox = document.getElementById("full-screen-mode");
+
 const voiceElements = {
   yellow: document.querySelector('audio[data-audio="yellow"]'),
   blue: document.querySelector('audio[data-audio="blue"]'),
@@ -275,4 +279,17 @@ sequenceDelayConfigInput.addEventListener("input", (e) => {
 
   sequenceDelay = val;
   document.documentElement.style.setProperty("--sequence-delay-transition", val + "ms");
+});
+
+sequenceTransitionSelection.addEventListener("change", (e) => {
+  const val = e.currentTarget.value;
+
+  document.documentElement.style.setProperty("--sequence-timing-function", val);
+});
+fullScreenModeCheckbox.addEventListener("change", (e) => {
+  if (e.target.checked) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 });

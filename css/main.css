@@ -1,5 +1,6 @@
 :root {
   --sequence-delay-transition: 600ms;
+  --sequence-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 h1,
@@ -71,12 +72,12 @@ main > ._wrapper {
   text-transform: capitalize;
   color: var(--text-color);
   opacity: 0;
-  transition: opacity var(--sequence-delay-transition) cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: opacity var(--sequence-delay-transition) var(--sequence-timing-function);
 }
 
 #sequence-wrapper .sequence-col > div {
   z-index: 1;
-  transition: transform var(--sequence-delay-transition) cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform var(--sequence-delay-transition) var(--sequence-timing-function);
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
@@ -180,7 +181,7 @@ main.sequence-playing #sequence-wrapper {
 
 main.sequence-playing #sequence-wrapper .sequence-col {
   pointer-events: none;
-  transition: background-color var(--sequence-delay-transition) cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: background-color var(--sequence-delay-transition) var(--sequence-timing-function);
 }
 
 #sequence-wrapper .sequence-col.active::after {
