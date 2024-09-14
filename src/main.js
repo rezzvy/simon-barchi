@@ -20,6 +20,20 @@ const mainMenuCloseButton = document.getElementById("main-menu-close-btn");
 const currentStageElement = document.getElementById("current-stage");
 const stageCompletionBar = document.querySelector("#stage-completion-bar").firstElementChild;
 
+const voiceElements = {
+  yellow: document.querySelector('audio[data-audio="yellow"]'),
+  blue: document.querySelector('audio[data-audio="blue"]'),
+  red: document.querySelector('audio[data-audio="red"]'),
+  green: document.querySelector('audio[data-audio="green"]'),
+};
+
+const sequenceStatePlaybackElements = {
+  true: document.querySelector('audio[data-audio="correct"]'),
+  false: document.querySelector('audio[data-audio="wrong"]'),
+};
+
+const bgmElement = document.querySelector('audio[data-audio="bgm"]');
+
 const sequences = [];
 let isGameStarted = false;
 let playerMoveLength = 0;
@@ -27,6 +41,40 @@ let stage = 1;
 
 let timeoutStart = "";
 let timeoutEnd = "";
+
+let currentPlayingVoice = "";
+let currentPlayingSequenceStatePlayback = "";
+
+function playAudio(audio, prev) {
+  if (prev && !prev.paused) {
+    prev.pause();
+    prev.currentTime = 0;
+  }
+
+  audio.play();
+  return audio;
+}
+
+function playVoice(color) {
+  const audio = voiceElements[color];
+  currentPlayingVoice = playAudio(audio, currentPlayingVoice);
+}
+
+function playsequenceStatePlayback(boolean) {
+  const audio = sequenceStatePlaybackElements[boolean];
+  currentPlayingSequenceStatePlayback = playAudio(audio, currentPlayingSequenceStatePlayback);
+}
+
+function playBgm(boolean) {
+  if (boolean) {
+    bgmElement.play();
+  } else {
+    if (!bgmElement.paused) {
+      bgmElement.pause();
+      bgmElement.currentTime = 0;
+    }
+  }
+}
 
 function generateMovesSpan(array) {
   const fragment = document.createDocumentFragment();
@@ -59,11 +107,12 @@ function playSequences(i = 0) {
   timeoutStart = setTimeout(() => {
     sequenceElement.classList.add("active");
     mainElement.classList.add("sequence-playing");
+    playVoice(sequences[i]);
     timeoutEnd = setTimeout(() => {
       sequenceElement.classList.remove("active");
       playSequences(i + 1);
-    }, 500);
-  }, 500);
+    }, 600);
+  }, 600);
 }
 
 function startGame() {
@@ -74,6 +123,8 @@ function startGame() {
   mainMenuModal.hide();
   generateSequence();
   playSequences();
+
+  playBgm(true);
 
   mainMenuCloseButton.classList.replace("d-none", "d-block");
 }
@@ -100,10 +151,16 @@ function stopGame() {
     mainElement.classList.remove("sequence-playing");
   }
 
+  if (currentPlayingVoice) {
+    currentPlayingVoice.pause();
+    currentPlayingVoice.currentTime = 0;
+  }
+
   mainMenuCloseButton.classList.replace("d-block", "d-none");
   stageCompletionBar.style.width = "0%";
   currentStageElement.textContent = "1";
- 
+
+  playBgm(false);
 }
 
 sequenceButtons.forEach((button) => {
@@ -113,7 +170,11 @@ sequenceButtons.forEach((button) => {
     const target = e.currentTarget;
     const targetColor = target.dataset.color;
 
-    if (targetColor === sequences[playerMoveLength]) {
+    const isCorrect = targetColor === sequences[playerMoveLength];
+
+    playsequenceStatePlayback(isCorrect);
+
+    if (isCorrect) {
       console.log("Correct!");
       playerMoveLength += 1;
 

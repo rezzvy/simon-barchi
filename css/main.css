@@ -67,12 +67,12 @@ main > ._wrapper {
   text-transform: capitalize;
   color: var(--text-color);
   opacity: 0;
-  transition: opacity 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: opacity 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 #sequence-wrapper .sequence-col > div {
   z-index: 1;
-  transition: transform 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
@@ -176,7 +176,7 @@ main.sequence-playing #sequence-wrapper {
 
 main.sequence-playing #sequence-wrapper .sequence-col {
   pointer-events: none;
-  transition: background-color 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: background-color 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 #sequence-wrapper .sequence-col.active::after {
