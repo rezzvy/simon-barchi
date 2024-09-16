@@ -22,10 +22,11 @@ Simon Barchi is a web-based Simon game with a Blue Archive theme.
 
 This game works like Simon, where the player follows a random sequence.
 
-- The game creates a random color sequence and stores it in an array.
-- It plays the sequence using recursion.
-- The player repeats it. The game checks if the clicked button matches the current color in the sequence. A variable called "playerMoveLength" is used as an index to track which color the player needs to guess correctly.
-- If the player is correct, they continue. If not, the game ends and shows the result.
+- Create a random color sequence and store it in an array.
+- Play the sequence using recursion.
+- Player repeats the sequence.
+- Check if the player's choice matches the current color
+- Continue if correct, end the game and show the result if incorrect.
 
 ## How to Use
 
